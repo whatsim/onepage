@@ -1,0 +1,24 @@
+{
+  "name": "onepage",
+  "version": "0.0.0",
+  "description": "A one page blog. It's either the front page or not there.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "will ruby <me@willruby.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.9.1",
+    "busboy": "^0.2.9",
+    "express": "^4.10.0",
+    "express-session": "^1.9.1",
+    "jade": "^1.7.0",
+    "passport": "^0.2.1",
+    "serve-favicon": "^2.1.6",
+    "serve-static": "^1.7.1"
+  }
+}
