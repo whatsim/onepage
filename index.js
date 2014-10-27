@@ -70,6 +70,7 @@ app.post('/clear',user.can('post'),clearImages);
 app.post('/post',user.can('post'),doPost);
 app.post('/upload',user.can('post'),upload);
 app.get('/login',login);
+app.get('/about',about);
 app.get('/',home);
 
   app.locals.pretty = true;
@@ -120,6 +121,9 @@ function home(req,res) {
 }
 function login(req,res) {
 	res.render('login')
+}
+function about(req,res) {
+	res.render('about')
 }
 function editPost(req,res) {
 	res.render('post',{post:thePost})

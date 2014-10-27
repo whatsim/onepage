@@ -140,13 +140,15 @@ form>input, form>textarea {
 	width:120%;
 
 }
-.foot {
-	margin:1.3em 0;
+.foot *{
 	font-size: .8em;
 	color:#212121;
-	opacity:0.75;
+	margin:1.3em 0;
 	float:left;
 	margin-right: 0.65em;
+}
+.foot a {
+	opacity:0.75;
 	text-decoration:none;
 }
 .foot a:hover {
