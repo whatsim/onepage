@@ -57,7 +57,7 @@ fs.readFile('savedState.txt','ascii', function (err, data) {
 
 fs.readFile('password.txt','ascii', function (err, data) {
 	if (err) throw err;
-	passFile = data
+	passFile = data.trim()
 });
 
 process.on('SIGINT', function() {
