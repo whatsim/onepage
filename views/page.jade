@@ -7,6 +7,9 @@ html(lang="en")
 		link(rel="favicon", href="/logo.svg")
 		script(type="text/javascript",src="scripts/ready.min.js")
 		block additionalHead
+		script(src="//use.typekit.net/oyd3pvm.js")
+		script
+			| try{Typekit.load();}catch(e){}
 	body
 		#wrapper
 			block content
