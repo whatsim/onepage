@@ -39,20 +39,20 @@ form>input, form>textarea {
 }
 .caption {
 	font-size:.8em;
-	font-weight:100;
+	font-weight:300;
 	display:block;
 	padding:5px 22px 5px;
 }
 .label {
 	font-size:.8em;
-	font-weight:100;
+	font-weight:300;
 	float:left;
 	display:inline;
 	line-height: 1.5em;
 	padding:5px 0 5px;
 }
 .label strong {
-	font-weight:400;
+	font-weight:500;
 }
 .checkboxWithLabel {
 	background:transparent;	
@@ -70,12 +70,12 @@ form>input, form>textarea {
 }
 
 #post p {
-	font-weight:100;	
+	font-weight:300;	
 	font-size:1.2em;
 	line-height:1.3em;
 }
 #post strong, #post b {
-	font-weight:400;	
+	font-weight:500;	
 }
 #post em {
 	font-style:italic;
@@ -155,7 +155,7 @@ form>input, form>textarea {
 	text-decoration:underline;
 }
 #feedback {
-	font-weight:100;	
+	font-weight:300;	
 	font-size:.75em;
 	margin:10px 0;
 	line-height:1.3em;	
