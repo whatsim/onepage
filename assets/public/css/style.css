@@ -1,6 +1,6 @@
 html, body {
 	font-size:100%;	
-	font-family:museo-slab, serif;
+	font-family:abril-text, serif;
 	color:#212121;
 	font-weight: 100;
 }
@@ -71,7 +71,7 @@ form>input, form>textarea {
 
 #post p {
 	font-weight:100;	
-	font-size:1em;
+	font-size:1.2em;
 	line-height:1.3em;
 }
 #post strong, #post b {
