@@ -1,0 +1,14 @@
+extends page
+block additionalHead
+	script(type="text/javascript",src="admin/scripts/admin.js")
+	link(rel="stylesheet", type="text/css", href="/admin/css/admin.css")
+block content
+	form#editPage
+		textarea#post
+			| !{locals.post}
+		input(type="submit",value="save")
+		#feedback
+		div#uploadImages
+			| drag in to upload images.
+		a#clearImageDirectory(href="#")
+			| clear images

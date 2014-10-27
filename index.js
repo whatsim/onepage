@@ -8,6 +8,9 @@ var fs				= require('fs'),
 	serveStatic 	= require('serve-static'),
 	favicon 		= require('serve-favicon'),
 	session 		= require('express-session'),
+	path 			= require('path'),
+	ConnectRoles 	= require('connect-roles'),
+	marked			= require('marked')
 
 	user = new ConnectRoles({
 		failureHandler: function (req, res, action) {
@@ -36,36 +39,45 @@ app.use(passport.session());
 app.use(user.middleware());
 
 app.use(serveStatic(path.join(__dirname, 'assets/public')));
+app.use('/admin/', user.can('post'))
+app.use('/admin/', serveStatic(path.join(__dirname, 'assets/admin')));
+
 app.set('views', __dirname + '/views');
 
-var post = passFile = ""
+var thePost = passFile = ""
+var markedPost = ""
 
 fs.readFile('savedState.txt','utf8', function (err, data) {
-  if (err) throw err;
-  post = data
+	if (err) throw err;
+	thePost = data
+	markedPost = marked(thePost)
 });
 
 fs.readFile('password.txt','utf8', function (err, data) {
-  if (err) throw err;
-  passFile = data
+	if (err) throw err;
+	passFile = data
 });
 
 process.on('SIGINT', function() {
-	fs.writeFileSync('savedState.txt',post)
+	fs.writeFileSync('savedState.txt',thePost)
 	process.exit();
 });
 
-app.get('/post',user.can('post'),post);
+app.get('/post',user.can('post'),editPost);
+app.post('/clear',user.can('post'),clearImages);
 app.post('/post',user.can('post'),doPost);
 app.post('/upload',user.can('post'),upload);
 app.get('/login',login);
-app.post('/login',doLogin);
-app.get('*',home);
+app.get('/',home);
+
+  app.locals.pretty = true;
+
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
+		
 		username = username.toLowerCase()
-  		if(username == 'will' && passFile.length && password == passfile) return done(null,user)
+  		if(username == 'will' && passFile .length && password == passFile) return done(null,{role:1})
   		else return done(null,false, {message: 'There was a problem with your Username or Password.'})
 	}
 ));
@@ -98,4 +110,52 @@ user.use('post', function (req) {
 	}
 })
 
-app.listen(8081);
+app.get('*',fourOhFour);
+app.listen(8083);
+
+function home(req,res) {
+	res.render('home',{post:markedPost})
+}
+function login(req,res) {
+	res.render('login')
+}
+function editPost(req,res) {
+	res.render('post',{post:thePost})
+}
+function doPost(req,res) {
+	thePost = req.body.post
+	markedPost = marked(thePost)
+	res.json({msg:'success'})
+}
+function upload(req,res) {
+	res.json({msg:'success'})
+}
+function clearImages(req,res){
+	fs.readdir(path.join(__dirname, 'assets/public/uploads')	, function(err,files){
+		if(err) res.status(400).json({msg:"Couldn't clear images."})
+		else {
+			var deleteError = undefined;
+			var filesToDelete = files.length
+			var count = 0
+			for(var i = 0; i < files.length; i++){
+				fs.unlink(path.join(__dirname, 'assets/public/uploads',files[i]),imageCleared)
+			}
+			
+			function imageCleared(err){
+				count ++
+				deleteError = err
+				if(count == filesToDelete){
+					if(err){
+						res.status(400).json({msg:err})
+					} else {
+						res.json({msg:"Cleared Images."})
+					}
+				}
+			}
+		}
+	})
+	
+}
+function fourOhFour(req,res){
+	res.status(404).render('404')
+}

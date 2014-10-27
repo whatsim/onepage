@@ -1,0 +1,163 @@
+html, body {
+	font-size:100%;	
+	font-family:Helvetica;
+	color:#212121;
+	font-weight: 100;
+}
+p {
+	font-size:1em;	
+}
+#newPage h1 {
+	font-size:1em;	
+	margin:0;
+	padding:0;
+}
+#wrapper {
+	margin:10em auto;
+	width:560px;
+}
+form>input, form>textarea {
+	display:block;
+	box-sizing: content-box;
+	width:540px; 
+	padding:9px 10px 10px;
+	border-radius:1px;
+	font-size:1em;
+	background:#efeeed;
+	border:0;
+	margin:10px 0;
+	clear:both;
+	color:#212121;
+}
+form>input:hover {
+	background:#ddd;
+}
+#pageText {
+	height:200px;	
+}
+#submitPage {
+	background:#212121;
+	-webkit-appearance: none;
+	color:white;
+}
+.caption {
+	font-size:.8em;
+	font-weight:100;
+	display:block;
+	padding:5px 22px 5px;
+}
+.label {
+	font-size:.8em;
+	font-weight:100;
+	float:left;
+	display:inline;
+	line-height: 1.5em;
+	padding:5px 0 5px;
+}
+.label strong {
+	font-weight:400;
+}
+.checkboxWithLabel {
+	background:transparent;	
+	padding:0;
+}
+.checkboxWithLabel input {
+	float:left;
+	display:inline;
+}
+.checkboxLabel {
+	padding:0 0 0 5px;
+}
+.clear {
+	clear:both;	
+}
+
+#post p {
+	font-weight:100;	
+	font-size:1em;
+	line-height:1.3em;
+}
+#post strong, #post b {
+	font-weight:400;	
+}
+#post em {
+	font-style:italic;
+}
+#post h1 {
+	font-size:2em;
+	line-height: 1.3em;
+	padding:0;
+	margin:.5em 0;
+	font-weight: 700;
+}
+#post h2 {
+	font-size:1.75em;
+	line-height: 1.3em;
+	margin:.57em 0;
+	padding:0;
+	font-weight: 500;
+}
+#post h3 {
+	font-size:1.5em;
+	line-height: 1.3em;
+	margin:.66em 0;
+	padding:0;
+	font-weight: 500;
+}
+#post h4 {
+	font-size:1.25em;
+	line-height: 1.3em;
+	margin:.8em 0;
+	padding:0;
+	font-weight: 500;
+}
+#post h5 {
+	font-size:1em;
+	line-height: 1.3em;
+	margin:1em 0;
+	padding:0;
+	font-weight: 500;
+}
+#post h6 {
+	font-size:1em;
+	line-height: 1.3em;
+	margin:1em 0;
+	padding:0;
+	font-weight: 400;
+}
+#post ol, #post ul {
+	list-style: outside;
+	padding:0.2em 1em 0;
+}
+#post li {
+	padding:.1em 0;	
+}
+#post a {
+	color:#212121;
+}
+#post code {
+	word-break:break-all;	
+}
+#post img {
+	margin:1.3em 0 1.3em -10%;
+	width:120%;
+
+}
+.foot {
+	margin:1.3em 0;
+	font-size: .8em;
+	color:#212121;
+	opacity:0.75;
+	float:left;
+	margin-right: 0.65em;
+	text-decoration:none;
+}
+.foot a:hover {
+	text-decoration:underline;
+}
+#feedback {
+	font-weight:100;	
+	font-size:.75em;
+	margin:10px 0;
+	line-height:1.3em;	
+}
