@@ -79,7 +79,6 @@ passport.use(new LocalStrategy(
 	function(username, password, done) {
 		
 		username = username.toLowerCase()
-		console.log(username == 'will' , passFile.length , password == passFile)
   		if(username == 'will' && passFile.length && password == passFile) return done(null,{role:1})
   		else return done(null,false, {message: 'There was a problem with your Username or Password.'})
 	}
