@@ -49,13 +49,13 @@ app.set('views', __dirname + '/views');
 var thePost = passFile = ""
 var markedPost = ""
 
-fs.readFile('savedState.txt','utf8', function (err, data) {
+fs.readFile('savedState.txt','ascii', function (err, data) {
 	if (err) throw err;
 	thePost = data
 	markedPost = marked(thePost)
 });
 
-fs.readFile('password.txt','utf8', function (err, data) {
+fs.readFile('password.txt','ascii', function (err, data) {
 	if (err) throw err;
 	passFile = data
 });
