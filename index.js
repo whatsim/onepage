@@ -10,7 +10,9 @@ var fs				= require('fs'),
 	session 		= require('express-session'),
 	path 			= require('path'),
 	ConnectRoles 	= require('connect-roles'),
-	marked			= require('marked')
+	marked			= require('marked'),
+	easyimg			= require('easyimage'),
+	Busboy			= require('busboy'),
 
 	user = new ConnectRoles({
 		failureHandler: function (req, res, action) {
@@ -128,7 +130,44 @@ function doPost(req,res) {
 	res.json({msg:'success'})
 }
 function upload(req,res) {
-	res.json({msg:'success'})
+	var bboy = new Busboy({
+		headers : req.headers,
+		limits  : {fileSize:10*1024*1024, files:1, highWaterMark:2*1024*1024}
+	});
+
+	var limited = [];
+
+	bboy.on('file', function(fieldname, file, filename, encoding, mimetype){
+		file.on('limit',function(){
+			console.log(file)
+		})
+		var filenamePieces = filename.split(".")
+		filename = filenamePieces[0] + Date.now()+"."+filenamePieces[filenamePieces.length-1];
+		fstream = fs.createWriteStream(__dirname + '/assets/public/uploads/' + filename);
+		
+		fstream.on('close', function () {
+			easyimg.info(__dirname + '/assets/public/uploads/' + filename).then(function(info){
+				
+				easyimg.resize({
+					width:1344,
+					src:__dirname + '/assets/public/uploads/' + filename, dst:__dirname + '/assets/public/uploads/' + filename,
+				}).then(function(image){
+					res.json({ msg: 'Successfully Uploaded Image', code: 200, file: filename})	
+				}).catch(function(err){
+					
+					res.status(500).json({ msg: 'Unable to Resize Image', code: 500, file: filename})	
+				})
+			}).catch(function(err){
+				res.status(500).json({ msg: 'Unable to Resize Image', code: 500, file: filename})	
+			})
+			
+		});
+		fstream.on('error', function () {
+			res.status(500).json({ msg: 'Problem Uploading', code: 500, file: filename})	
+		});
+		file.pipe(fstream);
+	});
+	req.pipe(bboy);
 }
 function clearImages(req,res){
 	fs.readdir(path.join(__dirname, 'assets/public/uploads')	, function(err,files){

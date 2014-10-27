@@ -5,6 +5,9 @@
 	background:lightblue;
 	color:white;
 }
+#uploadImages.dragging {
+	background:skyblue;
+}
 #editPage textarea {
 	height:500px;
 	background:#f7f7f7;

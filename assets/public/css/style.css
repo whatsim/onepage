@@ -29,13 +29,10 @@ form>input, form>textarea {
 	clear:both;
 	color:#212121;
 }
-form>input:hover {
-	background:#ddd;
-}
 #pageText {
 	height:200px;	
 }
-#submitPage {
+.submit {
 	background:#212121;
 	-webkit-appearance: none;
 	color:white;
