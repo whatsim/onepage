@@ -13,6 +13,7 @@ var fs				= require('fs'),
 	marked			= require('marked'),
 	easyimg			= require('easyimage'),
 	Busboy			= require('busboy'),
+	typeset = require('typeset'),
 
 	user = new ConnectRoles({
 		failureHandler: function (req, res, action) {
@@ -52,7 +53,7 @@ var markedPost = ""
 fs.readFile('savedState.txt','ascii', function (err, data) {
 	if (err) throw err;
 	thePost = data
-	markedPost = marked(thePost)
+	markedPost = typeset(marked(thePost))
 });
 
 fs.readFile('password.txt','ascii', function (err, data) {
@@ -130,7 +131,7 @@ function editPost(req,res) {
 }
 function doPost(req,res) {
 	thePost = req.body.post
-	markedPost = marked(thePost)
+	markedPost = typeset(marked(thePost))
 	res.json({msg:'success'})
 }
 function upload(req,res) {
