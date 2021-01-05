@@ -14,12 +14,22 @@ p {
 }
 #wrapper {
 	margin:10em auto;
-	width:560px;
+	max-width:450px;
+	position: relative;
+}
+#logo {
+	background:url(http://one.clvr.cc/bars.svg) no-repeat;
+	background-size:15px;
+	position: absolute;
+	left:-38px;
+	top:9px;
+	width: 15px;
+	height: 15px;
 }
 form>input, form>textarea {
 	display:block;
 	box-sizing: content-box;
-	width:540px; 
+	width:430px; 
 	padding:9px 10px 10px;
 	border-radius:1px;
 	font-size:1em;
@@ -38,10 +48,10 @@ form>input, form>textarea {
 	color:white;
 }
 .caption {
-	font-size:.8em;
+	font-size:.7em;
 	font-weight:300;
 	display:block;
-	padding:5px 22px 5px;
+	font-style:italic;
 }
 .label {
 	font-size:.8em;
@@ -70,9 +80,9 @@ form>input, form>textarea {
 }
 
 #post p {
-	font-weight:300;	
-	font-size:1.25em;
-	line-height:1.3em;
+	font-weight:normal;	
+	font-size:0.9em;
+	line-height:1.4em;
 }
 #post strong, #post b {
 	font-weight:500;	
@@ -132,15 +142,35 @@ form>input, form>textarea {
 #post a {
 	color:#212121;
 }
+#post a:hover {
+	color:#712121;
+}
 #post code {
 	word-break:break-all;	
+	font-size: 1.25em;
+	background: #f5f5f5;
+}
+pre {
+	background: #f5f5f5;
+	padding:1.5em;
+	font-size: 0.9em;
+	margin:1.7em 0 0.55em;
 }
 #post img {
 	margin:1.3em 0 1.3em -10%;
 	width:120%;
 
 }
+.foot {
+	padding:0 0 0 0;
+}
+hr {
+	margin:2.6em 7.8em;
+	border:0;
+	border-top:1px solid #ccc;
+}
 .foot *{
+	font-weight: 500;
 	font-size: .8em;
 	color:#212121;
 	margin:1.3em 0;
@@ -150,9 +180,11 @@ form>input, form>textarea {
 .foot a {
 	opacity:0.75;
 	text-decoration:none;
+	font-weight: 400;
 }
 .foot a:hover {
 	text-decoration:underline;
+	color:#712121;
 }
 #feedback {
 	font-weight:300;	

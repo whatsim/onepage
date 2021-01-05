@@ -28,7 +28,7 @@ var fs				= require('fs'),
 	});
 
 app.set('view engine', 'jade');
-app.use(favicon(__dirname + '/assets/public/favicon.ico'));
+app.use(favicon(__dirname + '/assets/public/bars.svg'));
 app.use(bodyParser.json()); 
 
 app.use(session({
@@ -53,7 +53,7 @@ var markedPost = ""
 fs.readFile('savedState.txt','ascii', function (err, data) {
 	if (err) throw err;
 	thePost = data
-	markedPost = typeset(marked(thePost))
+	markedPost = typeset(hydratePostTokens(marked(thePost)))
 });
 
 fs.readFile('password.txt','ascii', function (err, data) {
@@ -131,9 +131,26 @@ function editPost(req,res) {
 }
 function doPost(req,res) {
 	thePost = req.body.post
-	markedPost = typeset(marked(thePost))
+	markedPost = typeset(hydratePostTokens(marked(thePost)))
 	res.json({msg:'success'})
+	fs.writeFile('savedState.txt',thePost)
 }
+
+function hydratePostTokens(str){
+  str = str.replace(
+      /<p>(<img src="[\/\w./:]+" alt="uploaded image">)<\/p>/g,
+      "$1"
+    );
+    // this is sort of hacky
+    str = str.replace(
+      /<p>{{(.*)}}/g,
+      '<p class="$1">'
+    )
+
+   return str
+}
+
+
 function upload(req,res) {
 	var bboy = new Busboy({
 		headers : req.headers,

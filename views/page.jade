@@ -5,7 +5,7 @@ html(lang="en")
 		link(rel="stylesheet", type="text/css", href="/css/style.css")
 		link(rel="stylesheet", type="text/css", href="/css/typeset.css")
 		meta(name='viewport', content='width=700, user-scalable=no')
-		link(rel="favicon", href="/logo.svg")
+		link(rel="favicon", href="/bars.svg")
 		script(type="text/javascript",src="scripts/ready.min.js")
 		block additionalHead
 		script(src="//use.typekit.net/oyd3pvm.js")
@@ -13,5 +13,6 @@ html(lang="en")
 			| try{Typekit.load();}catch(e){}
 	body
 		#wrapper
+			#logo
 			block content
 			include includes/foot
